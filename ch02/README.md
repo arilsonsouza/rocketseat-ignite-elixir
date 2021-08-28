@@ -9,7 +9,7 @@
 - [x] Adding order values
 - [x] Extracting the parser to a new module
 - [x] Returning the highest value
-- [ ] Calculating the frequency of each order type
+- [x] Calculating the frequency of each order type
 - [ ] Refactoring the highest price return
 - [ ] Testing our Parser
 - [ ] Testing the ReportsGenerator
