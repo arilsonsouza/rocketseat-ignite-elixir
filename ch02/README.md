@@ -7,7 +7,7 @@
 - [x] Reading the file into a stream
 - [x] Parsing our file
 - [x] Adding order values
-- [ ] Extracting the parser to a new module
+- [x] Extracting the parser to a new module
 - [ ] Returning the highest value
 - [ ] Calculating the frequency of each order type
 - [ ] Refactoring the highest price return
