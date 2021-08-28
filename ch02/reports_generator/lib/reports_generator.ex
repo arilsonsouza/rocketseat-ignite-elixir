@@ -4,7 +4,8 @@ defmodule ReportsGenerator do
     |> File.stream!()
     |> Enum.reduce(%{}, fn line, acc ->
       [id, _product_name, price] = parse_line(line)
-      Map.put(acc, id, price)
+
+      Map.update(acc, id, price, fn existing_value -> existing_value + price end)
     end)
   end
 

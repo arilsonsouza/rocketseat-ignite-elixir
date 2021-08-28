@@ -6,7 +6,7 @@
 - [x] Knowing the pipe operator
 - [x] Reading the file into a stream
 - [x] Parsing our file
-- [ ] Adding order values
+- [x] Adding order values
 - [ ] Extracting the parser to a new module
 - [ ] Returning the highest value
 - [ ] Calculating the frequency of each order type
