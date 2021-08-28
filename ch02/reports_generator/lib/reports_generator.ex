@@ -8,4 +8,6 @@ defmodule ReportsGenerator do
       Map.update(acc, id, price, fn existing_value -> existing_value + price end)
     end)
   end
+
+  def fetch_higher_cost(report), do: Enum.max_by(report, fn {_id, value} -> value end)
 end
