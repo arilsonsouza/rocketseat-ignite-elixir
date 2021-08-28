@@ -5,7 +5,7 @@
 - [x] Reading our file
 - [x] Knowing the pipe operator
 - [x] Reading the file into a stream
-- [ ] Parsing our file
+- [x] Parsing our file
 - [ ] Adding order values
 - [ ] Extracting the parser to a new module
 - [ ] Returning the highest value
