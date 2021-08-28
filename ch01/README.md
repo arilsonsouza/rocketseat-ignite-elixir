@@ -1,4 +1,4 @@
-# Fundamentos do Elixir
+# Elixir Fundamentals
 
 - [x] Module Introduction
 - [x] Development Environment
@@ -12,5 +12,5 @@
 - [x] Introduction to Pattern Matching 2
 - [x] Sum List Project
 - [x] Challenge: Using recursion
-- [ ] Challenge: Filtering in lists
+- [x] Challenge: Filtering in lists
 
