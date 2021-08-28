@@ -2,7 +2,7 @@
 
 - [x] Introduction
 - [x] Creating our project and configuring Credo
-- [ ] Reading our file
+- [x] Reading our file
 - [ ] Knowing the pipe operator
 - [ ] Reading the file into a stream
 - [ ] Parsing our file
