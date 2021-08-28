@@ -4,7 +4,7 @@
 - [x] Creating our project and configuring Credo
 - [x] Reading our file
 - [x] Knowing the pipe operator
-- [ ] Reading the file into a stream
+- [x] Reading the file into a stream
 - [ ] Parsing our file
 - [ ] Adding order values
 - [ ] Extracting the parser to a new module
