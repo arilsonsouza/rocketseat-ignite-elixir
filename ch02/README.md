@@ -3,7 +3,7 @@
 - [x] Introduction
 - [x] Creating our project and configuring Credo
 - [x] Reading our file
-- [ ] Knowing the pipe operator
+- [x] Knowing the pipe operator
 - [ ] Reading the file into a stream
 - [ ] Parsing our file
 - [ ] Adding order values

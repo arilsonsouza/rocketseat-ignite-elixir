@@ -1,8 +1,10 @@
 defmodule ReportsGenerator do
   def build(filename) do
-    case File.read("reports/#{filename}") do
-      {:ok, file_conent} -> file_conent
-      {:error, reason} -> reason
-    end
+    "reports/#{filename}"
+    |> File.read()
+    |> handle_file()
   end
+
+  defp handle_file({:ok, file_conent}), do: file_conent
+  defp handle_file({:error, _reason}), do: "Error when opening file!"
 end
