@@ -14,8 +14,11 @@ defmodule ReportsGenerator do
     end)
   end
 
-  def fetch_higher_cost(%{users: users, products: _products} = _report),
-    do: Enum.max_by(users, fn {_id, value} -> value end)
+  def fetch_higher_cost(report, option) when option in [:users, :products] do
+    {:ok, Enum.max_by(report[option], fn {_id, value} -> value end)}
+  end
+
+  def fetch_higher_cost(_, _), do: {:error, :invalid_option}
 
   defp update_map_value(map, key, default, value),
     do: Map.update(map, key, default, fn existing_value -> existing_value + value end)
