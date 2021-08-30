@@ -11,7 +11,7 @@
 - [x] Returning the highest value
 - [x] Calculating the frequency of each order type
 - [x] Refactoring the highest price return
-- [ ] Testing our Parser
+- [x] Testing our Parser
 - [ ] Testing the ReportsGenerator
 
 #### Creating the parallel version and understanding processes
