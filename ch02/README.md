@@ -23,3 +23,8 @@
 - [x] Measuring the parallel version runtime
 - [x] Testing our parallel version
 - [x] Closing Module 2
+
+#### Challenges
+
+- [x] Challenge: Generating reports
+- [ ] Challenge: Generating reports with parallelism
