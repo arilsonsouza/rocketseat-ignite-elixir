@@ -20,6 +20,6 @@
 - [x] What's behind the processes in Elixir?
 - [x] Processes in practice, a simple example
 - [x] Creating our first parallel version
-- [ ] Measuring the parallel version runtime
-- [ ] Testing our parallel version
-- [ ] Closing Module 2
+- [x] Measuring the parallel version runtime
+- [x] Testing our parallel version
+- [x] Closing Module 2
