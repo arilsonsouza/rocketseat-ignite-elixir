@@ -8,7 +8,7 @@
 - [x] Using the Decimal lib
 - [x] Finalizing the Order struct
 - [x] Creating the User test
-- [ ] Getting to know the ExMachina lib
+- [x] Knowing the ExMachina lib
 - [ ] Testing the Item struct
 - [ ] Testing the Order struct
 - [ ] Pause: alias, use and import
