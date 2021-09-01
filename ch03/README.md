@@ -9,7 +9,7 @@
 - [x] Finalizing the Order struct
 - [x] Creating the User test
 - [x] Knowing the ExMachina lib
-- [ ] Testing the Item struct
+- [x] Testing the Item struct
 - [ ] Testing the Order struct
 - [ ] Pause: alias, use and import
 
