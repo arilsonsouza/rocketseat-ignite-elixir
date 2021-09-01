@@ -27,4 +27,4 @@
 #### Challenges
 
 - [x] Challenge: Generating reports
-- [ ] Challenge: Generating reports with parallelism
+- [x] Challenge: Generating reports with parallelism

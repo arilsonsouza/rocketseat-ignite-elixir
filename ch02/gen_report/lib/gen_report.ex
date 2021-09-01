@@ -38,6 +38,43 @@ defmodule GenReport do
 
   def build(), do: {:error, "Insira o nome de um arquivo"}
 
+  def build_from_many(file_names) when is_list(file_names) do
+    file_names
+    |> Task.async_stream(&build/1)
+    |> Enum.reduce(
+      %{"all_hours" => %{}, "hours_per_month" => %{}, "hours_per_year" => %{}},
+      fn {:ok, report},
+         %{
+           "all_hours" => all_hours,
+           "hours_per_month" => hours_per_month,
+           "hours_per_year" => hours_per_year
+         } = acc ->
+        %{
+          acc
+          | "all_hours" => merge(all_hours, report["all_hours"]),
+            "hours_per_month" => deep_merge(hours_per_month, report["hours_per_month"]),
+            "hours_per_year" => deep_merge(hours_per_year, report["hours_per_year"])
+        }
+      end
+    )
+  end
+
+  def build_from_many([]), do: {:error, "Insira nomes arquivos válidos"}
+
+  def build_from_many(), do: {:error, "Insira nomes arquivos válidos"}
+
+  defp merge(left, right) do
+    Map.merge(left, right, fn _key, left_value, right_value ->
+      left_value + right_value
+    end)
+  end
+
+  defp deep_merge(left, right) do
+    Map.merge(left, right, fn _key, left_map, right_map ->
+      merge(left_map, right_map)
+    end)
+  end
+
   defp update_nested_map_value(map, key, nested_key, default \\ 0, value, fun) do
     update_in(
       map,
