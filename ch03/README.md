@@ -4,7 +4,7 @@
 - [x] Creating the project
 - [x] Creating the User struct
 - [x] Adding some validations to our struct
-- [ ] Creating the Order and Items struct
+- [x] Creating the Order and Item struct
 - [ ] Using the Decimal lib
 - [ ] Finalizing the Order struct
 - [ ] Creating the User test
