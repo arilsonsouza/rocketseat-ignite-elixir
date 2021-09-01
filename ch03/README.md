@@ -5,7 +5,7 @@
 - [x] Creating the User struct
 - [x] Adding some validations to our struct
 - [x] Creating the Order and Item struct
-- [ ] Using the Decimal lib
+- [x] Using the Decimal lib
 - [ ] Finalizing the Order struct
 - [ ] Creating the User test
 - [ ] Getting to know the ExMachina lib
