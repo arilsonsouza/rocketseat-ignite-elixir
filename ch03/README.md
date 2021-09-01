@@ -7,7 +7,7 @@
 - [x] Creating the Order and Item struct
 - [x] Using the Decimal lib
 - [x] Finalizing the Order struct
-- [ ] Creating the User test
+- [x] Creating the User test
 - [ ] Getting to know the ExMachina lib
 - [ ] Testing the Item struct
 - [ ] Testing the Order struct
