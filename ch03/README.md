@@ -3,7 +3,7 @@
 - [x] Introduction
 - [x] Creating the project
 - [x] Creating the User struct
-- [ ] Adding some validations to our struct
+- [x] Adding some validations to our struct
 - [ ] Creating the Order and Items struct
 - [ ] Using the Decimal lib
 - [ ] Finalizing the Order struct
