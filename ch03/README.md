@@ -10,7 +10,7 @@
 - [x] Creating the User test
 - [x] Knowing the ExMachina lib
 - [x] Testing the Item struct
-- [ ] Testing the Order struct
+- [x] Testing the Order struct
 - [ ] Pause: alias, use and import
 
 #### Using Agents to Maintain State
