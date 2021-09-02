@@ -19,8 +19,8 @@
 - [x] Creating the User Agent
 - [x] Making User creation easier
 - [x] Saving Order on Agent
-- [ ] Facilitating the creation of Orders pt 1
-- [ ] Facilitating the creation of Orders pt 2
+- [x] Facilitating the creation of Orders pt 1
+- [x] Facilitating the creation of Orders pt 2
 - [ ] Testing the User Agent
 - [ ] Testing Create or Update User
 - [ ] Testing the Order Agent
