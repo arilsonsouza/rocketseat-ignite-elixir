@@ -11,12 +11,12 @@
 - [x] Knowing the ExMachina lib
 - [x] Testing the Item struct
 - [x] Testing the Order struct
-- [ ] Pause: alias, use and import
+- [x] Pause: alias, use and import
 
 #### Using Agents to Maintain State
 
-- [ ] Using Agents to maintain state
-- [ ] Creating the User Agent
+- [x] Using Agents to maintain state
+- [x] Creating the User Agent
 - [ ] Making User creation easier
 - [ ] Saving the Order on Agent
 - [ ] Facilitating the creation of Orders pt 1
