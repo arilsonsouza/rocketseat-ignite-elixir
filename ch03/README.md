@@ -24,7 +24,7 @@
 - [x] Testing the User Agent
 - [x] Testing Create or Update User
 - [x] Testing the Order Agent
-- [ ] Testing Create or Update Order
+- [x] Testing Create or Update Order
 
 #### Generating the order report
 
