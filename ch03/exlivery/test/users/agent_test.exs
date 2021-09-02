@@ -1,4 +1,4 @@
-defmodule Exlivery.Users.UserAgentTest do
+defmodule Exlivery.Users.AgentTest do
   use ExUnit.Case
 
   import Exlivery.Factory
