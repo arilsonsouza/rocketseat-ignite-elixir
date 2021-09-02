@@ -17,8 +17,8 @@
 
 - [x] Using Agents to maintain state
 - [x] Creating the User Agent
-- [ ] Making User creation easier
-- [ ] Saving the Order on Agent
+- [x] Making User creation easier
+- [x] Saving Order on Agent
 - [ ] Facilitating the creation of Orders pt 1
 - [ ] Facilitating the creation of Orders pt 2
 - [ ] Testing the User Agent
