@@ -21,7 +21,7 @@
 - [x] Saving Order on Agent
 - [x] Facilitating the creation of Orders pt 1
 - [x] Facilitating the creation of Orders pt 2
-- [ ] Testing the User Agent
+- [x] Testing the User Agent
 - [ ] Testing Create or Update User
 - [ ] Testing the Order Agent
 - [ ] Testing Create or Update Order

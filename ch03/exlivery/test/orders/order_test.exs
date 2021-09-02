@@ -3,7 +3,7 @@ defmodule Exlivery.Orders.OrderTest do
 
   import Exlivery.Factory
 
-  alias Exlivery.Orders.{Order, Item}
+  alias Exlivery.Orders.Order
 
   describe "build/4" do
     test "should return an order when passes valid params" do
