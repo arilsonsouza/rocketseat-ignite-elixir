@@ -22,7 +22,7 @@
 - [x] Facilitating the creation of Orders pt 1
 - [x] Facilitating the creation of Orders pt 2
 - [x] Testing the User Agent
-- [ ] Testing Create or Update User
+- [x] Testing Create or Update User
 - [ ] Testing the Order Agent
 - [ ] Testing Create or Update Order
 
