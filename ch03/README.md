@@ -30,5 +30,5 @@
 
 - [x] Reading all Agent Orders
 - [x] Generating the order report
-- [ ] Reports generation testing
-- [ ] Closing of module 3
+- [x] Reports generation testing
+- [x] Closing of module 3
