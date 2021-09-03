@@ -32,3 +32,8 @@
 - [x] Generating the order report
 - [x] Reports generation testing
 - [x] Closing of module 3
+
+#### Challenges
+
+- [x] Challenge: Flight reservations
+- [x] Challenge: Flight Booking Report
