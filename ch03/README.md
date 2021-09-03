@@ -28,7 +28,7 @@
 
 #### Generating the order report
 
-- [ ] Reading all Agent Orders
-- [ ] Generating the order report
+- [x] Reading all Agent Orders
+- [x] Generating the order report
 - [ ] Reports generation testing
 - [ ] Closing of module 3
