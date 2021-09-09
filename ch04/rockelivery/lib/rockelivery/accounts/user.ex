@@ -3,6 +3,8 @@ defmodule Rockelivery.Accounts.User do
 
   @required_fields [:email, :name, :tax_id, :password, :birth_date, :cep, :address]
 
+  @derive {Jason.Encoder, only: [:id, :name, :email, :birth_date, :cep]}
+
   schema "users" do
     field(:email, :string)
     field(:name, :string)
