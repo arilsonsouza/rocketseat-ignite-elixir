@@ -1,6 +1,7 @@
 defmodule Rockelivery.Accounts do
   alias Rockelivery.Repo
   alias Rockelivery.Accounts.User
+  alias Rockelivery.Error
 
   def register_user(attrs) do
     %User{}
@@ -8,7 +9,7 @@ defmodule Rockelivery.Accounts do
     |> Repo.insert()
     |> case do
       {:ok, %User{}} = result -> result
-      {:error, changeset} -> {:error, %{status: :bad_request, result: changeset}}
+      {:error, changeset} -> {:error, Error.build(:bad_request, changeset)}
     end
   end
 
@@ -17,8 +18,8 @@ defmodule Rockelivery.Accounts do
          %User{} = user <- Repo.get(User, user_uuid) do
       {:ok, user}
     else
-      nil -> {:error, %{status: :not_found, result: "User not found!"}}
-      :error -> {:error, %{status: :bad_request, result: "Invalid user id!"}}
+      nil -> {:error, Error.user_not_found()}
+      :error -> {:error, Error.bad_request()}
     end
   end
 
