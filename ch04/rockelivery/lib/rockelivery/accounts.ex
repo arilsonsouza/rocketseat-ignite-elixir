@@ -21,4 +21,11 @@ defmodule Rockelivery.Accounts do
       :error -> {:error, %{status: :bad_request, result: "Invalid user id!"}}
     end
   end
+
+  def delete_user_by_id(user_uuid) do
+    case user_by_id(user_uuid) do
+      {:ok, user} -> Repo.delete(user)
+      reply -> reply
+    end
+  end
 end
