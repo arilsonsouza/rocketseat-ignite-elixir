@@ -1,7 +1,9 @@
 defmodule Rockelivery.Accounts.User do
   use Rockelivery.Schema
 
-  @required_fields [:email, :name, :tax_id, :password, :birth_date, :cep, :address]
+  @virtual_fields [:password]
+
+  @fields [:email, :name, :tax_id, :birth_date, :cep, :address]
 
   @derive {Jason.Encoder, only: [:id, :name, :email, :birth_date, :cep]}
 
@@ -19,13 +21,23 @@ defmodule Rockelivery.Accounts.User do
   end
 
   def registration_changeset(%__MODULE__{} = user, attrs) do
+    required_fields = @fields ++ @virtual_fields
+
     user
-    |> cast(attrs, @required_fields)
-    |> validate_required(@required_fields)
+    |> cast(attrs, required_fields)
+    |> validate_required(required_fields)
     |> validate_length(:cep, is: 8)
     |> validate_email()
     |> validate_tax_id()
     |> validate_password()
+  end
+
+  def update_changeset(%__MODULE__{} = user, attrs) do
+    user
+    |> cast(attrs, @fields)
+    |> validate_length(:cep, is: 8)
+    |> validate_email()
+    |> validate_tax_id()
   end
 
   defp validate_tax_id(changeset) do

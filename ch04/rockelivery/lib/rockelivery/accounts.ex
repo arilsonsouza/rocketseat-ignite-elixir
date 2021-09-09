@@ -29,4 +29,16 @@ defmodule Rockelivery.Accounts do
       reply -> reply
     end
   end
+
+  def update_user_by_id(%{"id" => user_uuid} = params) do
+    case user_by_id(user_uuid) do
+      {:ok, user} ->
+        user
+        |> User.update_changeset(params)
+        |> Repo.update()
+
+      reply ->
+        reply
+    end
+  end
 end
