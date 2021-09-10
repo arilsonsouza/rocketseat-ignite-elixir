@@ -14,8 +14,7 @@ defmodule Rockelivery.Accounts do
   end
 
   def user_by_id(user_uuid) do
-    with {:ok, _uuid} <- Ecto.UUID.cast(user_uuid),
-         %User{} = user <- Repo.get(User, user_uuid) do
+    with %User{} = user <- Repo.get(User, user_uuid) do
       {:ok, user}
     else
       nil -> {:error, Error.user_not_found()}
