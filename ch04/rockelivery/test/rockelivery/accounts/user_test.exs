@@ -1,21 +1,13 @@
 defmodule Rockelivery.Accounts.UserTest do
   use Rockelivery.DataCase, async: true
 
+  import Rockelivery.Factory
+
   alias Ecto.Changeset
   alias Rockelivery.Accounts.User
 
   setup %{} do
-    user_attrs = %{
-      email: "joe@email.com",
-      name: "Joe",
-      tax_id: "12345678912",
-      password: "123456",
-      birth_date: ~D[1996-03-01],
-      cep: "44905000",
-      address: "Mocca"
-    }
-
-    {:ok, user_attrs: user_attrs}
+    {:ok, user_attrs: build(:user_attrs)}
   end
 
   describe "registration_changeset/2" do
