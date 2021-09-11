@@ -54,4 +54,40 @@ defmodule RockeliveryWeb.UsersControllerTest do
              } = response
     end
   end
+
+  describe "delete/2" do
+    test "should delete a user when user_id is valid", %{conn: conn} do
+      id = "6ab76803-e57b-4147-8598-3b82cf088350"
+      insert(:user)
+
+      response =
+        conn
+        |> delete(Routes.users_path(conn, :delete, id))
+        |> response(:no_content)
+
+      assert response == ""
+    end
+
+    test "should return an error when not exists a user for the given uuid", %{conn: conn} do
+      id = "c1a8c88b-dbd2-43c7-b67e-eeaba89ee7ba"
+
+      response =
+        conn
+        |> delete(Routes.users_path(conn, :delete, id))
+        |> json_response(:not_found)
+
+      assert response == %{"errors" => "User not found"}
+    end
+
+    test "should return an error when receives an invalid uuid", %{conn: conn} do
+      id = "c1a8c88b-dbd2"
+
+      response =
+        conn
+        |> delete(Routes.users_path(conn, :delete, id))
+        |> json_response(:bad_request)
+
+      assert response == %{"message" => "Invalid request format!"}
+    end
+  end
 end
