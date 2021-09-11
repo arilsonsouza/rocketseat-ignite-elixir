@@ -23,7 +23,12 @@ defmodule Rockelivery.Accounts.UserTest do
       response =
         User.registration_changeset(%User{}, %{user_attrs | tax_id: "12345678", password: "123"})
 
-      assert %Changeset{valid?: false} = response
+      expected = %{
+        password: ["should be at least 6 character(s)"],
+        tax_id: ["should be 11 character(s)"]
+      }
+
+      assert errors_on(response) == expected
     end
   end
 
@@ -52,7 +57,8 @@ defmodule Rockelivery.Accounts.UserTest do
           | tax_id: "12345678"
         })
 
-      assert %Changeset{valid?: false} = response
+      expected = %{tax_id: ["should be 11 character(s)"]}
+      assert errors_on(response) == expected
     end
   end
 end
