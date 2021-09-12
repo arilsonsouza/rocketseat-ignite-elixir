@@ -3,7 +3,7 @@ defmodule Rockelivery.Orders.Order do
 
   @fields [:user_id, :address, :comments, :payment_type]
 
-  @derive {Jason.Encoder, only: [:id] ++ @fields}
+  @derive {Jason.Encoder, only: [:id, :items] ++ @fields}
 
   @payment_types [:money, :credit_card, :debit_card]
 
