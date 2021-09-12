@@ -12,4 +12,23 @@ defmodule Exmeal.Meals do
       {:error, changeset} -> {:error, Error.build(:bad_request, changeset)}
     end
   end
+
+  def by_id(meal_uuid) do
+    case Repo.get(Meal, meal_uuid) do
+      nil -> {:error, Error.build(:not_found, "Meal not found.")}
+      %Meal{} = meal -> {:ok, meal}
+    end
+  end
+
+  def update(%{"id" => uuid} = attrs) do
+    case by_id(uuid) do
+      {:ok, meal} ->
+        meal
+        |> Meal.changeset(attrs)
+        |> Repo.update()
+
+      reply ->
+        reply
+    end
+  end
 end

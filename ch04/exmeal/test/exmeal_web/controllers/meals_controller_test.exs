@@ -38,4 +38,72 @@ defmodule ExmealWeb.MealsControllerTest do
              } = response
     end
   end
+
+  describe "update/2" do
+    test "should update a meal when id exist", %{conn: conn} do
+      id = Ecto.UUID.generate()
+      insert(:meal, %{id: id, description: "Rice and Beans", calories: 450})
+
+      response =
+        conn
+        |> put(
+          Routes.meals_path(conn, :update, id, %{"description" => "Banana", "calories" => 20})
+        )
+        |> json_response(:ok)
+
+      assert %{
+               "meal" => %{
+                 "calories" => 20,
+                 "date" => "2021-09-12T01:23:20Z",
+                 "description" => "Banana",
+                 "id" => _
+               }
+             } = response
+    end
+
+    test "should return an error when id not exist", %{conn: conn} do
+      id = Ecto.UUID.generate()
+
+      response =
+        conn
+        |> put(
+          Routes.meals_path(conn, :update, id, %{"description" => "Banana", "calories" => 20})
+        )
+        |> json_response(:not_found)
+
+      assert %{"errors" => "Meal not found."} = response
+    end
+  end
+
+  describe "show/2" do
+    test "should return a meal when id exist", %{conn: conn} do
+      id = Ecto.UUID.generate()
+      insert(:meal, %{id: id})
+
+      response =
+        conn
+        |> get(Routes.meals_path(conn, :show, id))
+        |> json_response(:ok)
+
+      assert %{
+               "meal" => %{
+                 "calories" => 284,
+                 "date" => "2021-09-12T01:23:20Z",
+                 "description" => "Lasanha",
+                 "id" => _
+               }
+             } = response
+    end
+
+    test "should return an error when id not exist", %{conn: conn} do
+      id = Ecto.UUID.generate()
+
+      response =
+        conn
+        |> get(Routes.meals_path(conn, :show, id))
+        |> json_response(:not_found)
+
+      assert %{"errors" => "Meal not found."} = response
+    end
+  end
 end
