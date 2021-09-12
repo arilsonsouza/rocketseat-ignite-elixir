@@ -7,11 +7,15 @@ defmodule Rockelivery.Items.Item do
 
   @items_categories [:food, :drink, :desert]
 
+  alias Rockelivery.Orders.Order
+
   schema "items" do
     field(:category, Ecto.Enum, values: @items_categories)
     field(:description, :string)
     field(:price, :decimal)
     field(:photo, :string)
+
+    many_to_many(:orders, Order, join_through: "orders_items")
 
     timestamps()
   end

@@ -7,6 +7,8 @@ defmodule Rockelivery.Accounts.User do
 
   @derive {Jason.Encoder, only: [:id, :name, :email, :birth_date, :cep]}
 
+  alias Rockelivery.Orders.Order
+
   schema "users" do
     field(:email, :string)
     field(:name, :string)
@@ -16,6 +18,8 @@ defmodule Rockelivery.Accounts.User do
     field(:birth_date, :date)
     field(:cep, :string)
     field(:address, :string)
+
+    has_many(:orders, Order)
 
     timestamps()
   end
