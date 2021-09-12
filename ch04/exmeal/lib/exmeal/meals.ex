@@ -31,4 +31,11 @@ defmodule Exmeal.Meals do
         reply
     end
   end
+
+  def delete_by_id(meal_uuid) do
+    case by_id(meal_uuid) do
+      {:ok, meal} -> Repo.delete(meal)
+      reply -> reply
+    end
+  end
 end

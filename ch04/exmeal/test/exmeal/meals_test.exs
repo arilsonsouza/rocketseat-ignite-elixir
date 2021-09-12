@@ -86,4 +86,31 @@ defmodule Exmeal.MealsTest do
       assert {:error, %Exmeal.Error{result: "Meal not found.", status: :not_found}} = response
     end
   end
+
+  describe "delete_by_id/1" do
+    test "should return a deleted meal when is given a valid id" do
+      id = Ecto.UUID.generate()
+      insert(:meal, %{id: id})
+
+      response = Meals.delete_by_id(id)
+
+      assert {
+               :ok,
+               %Meals.Meal{
+                 calories: 284,
+                 date: ~U[2021-09-12 01:23:20Z],
+                 description: "Lasanha",
+                 id: _
+               }
+             } = response
+    end
+
+    test "should return an error when is given an invalid id" do
+      id = Ecto.UUID.generate()
+
+      response = Meals.delete_by_id(id)
+
+      assert {:error, %Error{result: "Meal not found.", status: :not_found}} = response
+    end
+  end
 end

@@ -106,4 +106,29 @@ defmodule ExmealWeb.MealsControllerTest do
       assert %{"errors" => "Meal not found."} = response
     end
   end
+
+  describe "delete/2" do
+    test "should delete an meal when is given a valid id", %{conn: conn} do
+      id = Ecto.UUID.generate()
+      insert(:meal, %{id: id})
+
+      response =
+        conn
+        |> delete(Routes.meals_path(conn, :delete, id))
+        |> response(:no_content)
+
+      assert response == ""
+    end
+
+    test "should return an error when is given an invalid id", %{conn: conn} do
+      id = Ecto.UUID.generate()
+
+      response =
+        conn
+        |> delete(Routes.meals_path(conn, :delete, id))
+        |> json_response(:not_found)
+
+      assert response == %{"errors" => "Meal not found."}
+    end
+  end
 end
