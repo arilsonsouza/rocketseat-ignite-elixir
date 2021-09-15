@@ -2,14 +2,19 @@ defmodule Rockelivery.Accounts do
   alias Rockelivery.Repo
   alias Rockelivery.Accounts.User
   alias Rockelivery.Error
+  alias Rockelivery.ViaCep.Client
 
-  def register_user(attrs) do
-    %User{}
-    |> User.registration_changeset(attrs)
-    |> Repo.insert()
-    |> case do
-      {:ok, %User{}} = result -> result
-      {:error, changeset} -> {:error, Error.build(:bad_request, changeset)}
+  def register_user(%{"cep" => cep} = attrs) do
+    with {:ok, %User{} = user} <- User.registration_changeset(%User{}, attrs) |> User.build(),
+         {:ok, _cep_info} <- Client.get_cep_info(cep),
+         {:ok, %User{}} = result <- Repo.insert(user) do
+      result
+    else
+      {:error, %Error{}} = error ->
+        error
+
+      {:error, result} ->
+        {:error, Error.build(:bad_request, result)}
     end
   end
 

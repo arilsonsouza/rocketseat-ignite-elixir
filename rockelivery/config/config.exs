@@ -17,10 +17,10 @@ config :rockelivery, Rockelivery.Repo,
 # Configures the endpoint
 config :rockelivery, RockeliveryWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "MuPE8IV6VBZ8TutQcInB8zS17lpWuwvSt1cLraH9ZahqxwUDz86R1/nPhF6Syyxq",
+  secret_key_base: "CaVgJ2nPbkon1cVTFO5ffjVh0JnFgHfGGbcNjeKYHF+oaPy8FalcVQ8TrqTrZcWU",
   render_errors: [view: RockeliveryWeb.ErrorView, accepts: ~w(json), layout: false],
   pubsub_server: Rockelivery.PubSub,
-  live_view: [signing_salt: "iB4pCO9O"]
+  live_view: [signing_salt: "RmNfE633"]
 
 # Configures Elixir's Logger
 config :logger, :console,

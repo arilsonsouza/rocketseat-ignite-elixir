@@ -10,14 +10,7 @@ defmodule Rockelivery.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps(),
-      test_coverage: [tool: ExCoveralls],
-      preferred_cli_env: [
-        coveralls: :test,
-        "coveralls.detail": :test,
-        "coveralls.post": :test,
-        "coveralls.html": :test
-      ]
+      deps: deps()
     ]
   end
 
@@ -40,8 +33,8 @@ defmodule Rockelivery.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.5.8"},
-      {:phoenix_ecto, "~> 4.1"},
+      {:phoenix, "~> 1.5.12"},
+      {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.4"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_live_dashboard, "~> 0.4"},
@@ -50,8 +43,10 @@ defmodule Rockelivery.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
+      {:pbkdf2_elixir, "~> 1.3"},
+      {:tesla, "~> 1.4.0"},
+      {:hackney, "~> 1.17.4"},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
-      {:pbkdf2_elixir, "~> 1.4"},
       {:excoveralls, "~> 0.10", only: :test},
       {:ex_machina, "~> 2.7.0", only: :test}
     ]

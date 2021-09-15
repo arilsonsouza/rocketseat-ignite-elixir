@@ -44,6 +44,11 @@ defmodule Rockelivery.Accounts.User do
     |> validate_tax_id()
   end
 
+  def build(changeset) do
+    changeset
+    |> apply_action(:insert)
+  end
+
   defp validate_tax_id(changeset) do
     changeset
     |> validate_length(:tax_id, is: 11)
