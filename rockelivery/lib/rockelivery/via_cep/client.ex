@@ -3,13 +3,13 @@ defmodule Rockelivery.ViaCep.Client do
 
   alias Rockelivery.Error
 
-  plug(Tesla.Middleware.BaseUrl, "https://viacep.com.br/ws")
+  @base_url "https://viacep.com.br/ws"
   plug(Tesla.Middleware.JSON)
 
   adapter(Tesla.Adapter.Hackney, recv_timeout: 60_000)
 
-  def get_cep_info(cep) do
-    case get("/#{cep}/json") do
+  def get_cep_info(url \\ @base_url, cep) do
+    case get("#{url}/#{cep}/json") do
       {:ok, %{body: %{"erro" => true}}} ->
         {:error, Error.build(:not_found, "CEP not found.")}
 
