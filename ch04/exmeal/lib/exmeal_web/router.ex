@@ -11,6 +11,7 @@ defmodule ExmealWeb.Router do
   scope "/api", ExmealWeb do
     pipe_through :api
 
+    resources "/users", UsersController, except: [:new, :edit]
     resources "/meals", MealsController, except: [:new, :edit]
   end
 
