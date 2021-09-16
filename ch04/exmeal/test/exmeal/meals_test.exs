@@ -5,11 +5,18 @@ defmodule Exmeal.MealsTest do
 
   alias Exmeal.{Meals, Error}
 
+  setup %{} do
+    user_id = Ecto.UUID.generate()
+    insert(:user, %{id: user_id})
+
+    {:ok, user_id: user_id}
+  end
+
   describe "create/1" do
-    test "should return a meal when all attrs are valid" do
+    test "should return a meal when all attrs are valid", %{user_id: user_id} do
       attrs = build(:meal_attrs)
 
-      response = Meals.create(attrs)
+      response = Meals.create(%{attrs | "user_id" => user_id})
 
       assert {
                :ok,
@@ -26,7 +33,8 @@ defmodule Exmeal.MealsTest do
       expected = %{
         calories: ["can't be blank"],
         date: ["can't be blank"],
-        description: ["can't be blank"]
+        description: ["can't be blank"],
+        user_id: ["can't be blank"]
       }
 
       assert {:error, %Error{status: :bad_request, result: changeset}} = Meals.create(%{})
@@ -36,9 +44,9 @@ defmodule Exmeal.MealsTest do
   end
 
   describe "by_id/1" do
-    test "should return a meal when is given a valid id" do
+    test "should return a meal when is given a valid id", %{user_id: user_id} do
       id = Ecto.UUID.generate()
-      insert(:meal, %{id: id})
+      insert(:meal, %{id: id, user_id: user_id})
 
       response = Meals.by_id(id)
 
@@ -61,9 +69,9 @@ defmodule Exmeal.MealsTest do
   end
 
   describe "update/1" do
-    test "should return an updated meal when is given a valid id" do
+    test "should return an updated meal when is given a valid id", %{user_id: user_id} do
       id = Ecto.UUID.generate()
-      insert(:meal, %{id: id})
+      insert(:meal, %{id: id, user_id: user_id})
 
       response = Meals.update(%{"id" => id, "calories" => 20, "description" => "Banana"})
 
@@ -88,9 +96,9 @@ defmodule Exmeal.MealsTest do
   end
 
   describe "delete_by_id/1" do
-    test "should return a deleted meal when is given a valid id" do
+    test "should return a deleted meal when is given a valid id", %{user_id: user_id} do
       id = Ecto.UUID.generate()
-      insert(:meal, %{id: id})
+      insert(:meal, %{id: id, user_id: user_id})
 
       response = Meals.delete_by_id(id)
 

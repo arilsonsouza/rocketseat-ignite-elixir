@@ -3,9 +3,9 @@ defmodule Exmeal.Meals.Meal do
 
   alias Exmeal.Users.User
 
-  @fields [:description, :date, :calories]
+  @fields [:user_id, :description, :date, :calories]
 
-  @derive {Jason.Encoder, only: [:id, :description, :date, :calories]}
+  @derive {Jason.Encoder, only: [:id] ++ @fields}
 
   schema "meals" do
     field(:description, :string)

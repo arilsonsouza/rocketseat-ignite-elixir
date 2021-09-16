@@ -3,13 +3,20 @@ defmodule ExmealWeb.MealsControllerTest do
 
   import Exmeal.Factory
 
+  setup %{} do
+    user_id = Ecto.UUID.generate()
+    insert(:user, %{id: user_id})
+
+    {:ok, user_id: user_id}
+  end
+
   describe "create/2" do
-    test "should create a meal when all params are present", %{conn: conn} do
+    test "should create a meal when all params are present", %{conn: conn, user_id: user_id} do
       params = build(:meal_attrs)
 
       response =
         conn
-        |> post(Routes.meals_path(conn, :create, params))
+        |> post(Routes.meals_path(conn, :create, %{params | "user_id" => user_id}))
         |> json_response(:created)
 
       assert %{
@@ -40,9 +47,9 @@ defmodule ExmealWeb.MealsControllerTest do
   end
 
   describe "update/2" do
-    test "should update a meal when id exist", %{conn: conn} do
+    test "should update a meal when id exist", %{conn: conn, user_id: user_id} do
       id = Ecto.UUID.generate()
-      insert(:meal, %{id: id, description: "Rice and Beans", calories: 450})
+      insert(:meal, %{id: id, user_id: user_id, description: "Rice and Beans", calories: 450})
 
       response =
         conn
@@ -76,9 +83,9 @@ defmodule ExmealWeb.MealsControllerTest do
   end
 
   describe "show/2" do
-    test "should return a meal when id exist", %{conn: conn} do
+    test "should return a meal when id exist", %{conn: conn, user_id: user_id} do
       id = Ecto.UUID.generate()
-      insert(:meal, %{id: id})
+      insert(:meal, %{id: id, user_id: user_id})
 
       response =
         conn
@@ -108,9 +115,9 @@ defmodule ExmealWeb.MealsControllerTest do
   end
 
   describe "delete/2" do
-    test "should delete an meal when is given a valid id", %{conn: conn} do
+    test "should delete an meal when is given a valid id", %{conn: conn, user_id: user_id} do
       id = Ecto.UUID.generate()
-      insert(:meal, %{id: id})
+      insert(:meal, %{id: id, user_id: user_id})
 
       response =
         conn
