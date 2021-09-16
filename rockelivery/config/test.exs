@@ -20,3 +20,5 @@ config :rockelivery, RockeliveryWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+config :rockelivery, Rockelivery.Accounts, via_cep_adapter: Rockelivery.ViaCep.ClientMock

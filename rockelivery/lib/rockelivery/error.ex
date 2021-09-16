@@ -4,6 +4,8 @@ defmodule Rockelivery.Error do
 
   defstruct @keys
 
+  @type t :: %__MODULE__{}
+
   def build(status, result) do
     %__MODULE__{status: status, result: result}
   end

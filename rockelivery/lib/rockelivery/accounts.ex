@@ -2,11 +2,12 @@ defmodule Rockelivery.Accounts do
   alias Rockelivery.Repo
   alias Rockelivery.Accounts.User
   alias Rockelivery.Error
-  alias Rockelivery.ViaCep.Client
 
-  def register_user(%{"cep" => cep} = attrs) do
+  def register_user(attrs) do
+    cep = Map.get(attrs, "cep")
+
     with {:ok, %User{} = user} <- User.registration_changeset(%User{}, attrs) |> User.build(),
-         {:ok, _cep_info} <- Client.get_cep_info(cep),
+         {:ok, _cep_info} <- via_cep_adapter().get_cep_info(cep),
          {:ok, %User{}} = result <- Repo.insert(user) do
       result
     else
@@ -44,5 +45,11 @@ defmodule Rockelivery.Accounts do
       reply ->
         reply
     end
+  end
+
+  def via_cep_adapter() do
+    :rockelivery
+    |> Application.fetch_env!(__MODULE__)
+    |> Keyword.get(:via_cep_adapter)
   end
 end

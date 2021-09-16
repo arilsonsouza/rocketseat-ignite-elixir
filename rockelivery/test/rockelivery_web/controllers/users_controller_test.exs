@@ -1,7 +1,10 @@
 defmodule RockeliveryWeb.UsersControllerTest do
   use RockeliveryWeb.ConnCase, async: true
 
+  import Mox
   import Rockelivery.Factory
+
+  alias Rockelivery.ViaCep.ClientMock
 
   setup %{} do
     params = %{
@@ -19,6 +22,8 @@ defmodule RockeliveryWeb.UsersControllerTest do
 
   describe "create/2" do
     test "should register an user when all params are valid", %{conn: conn, params: params} do
+      expect(ClientMock, :get_cep_info, fn _cep -> {:ok, build(:cep_info)} end)
+
       response =
         conn
         |> post(Routes.users_path(conn, :create, params))
@@ -39,14 +44,19 @@ defmodule RockeliveryWeb.UsersControllerTest do
     test "should return an error when are invalid params", %{conn: conn} do
       response =
         conn
-        |> post(Routes.users_path(conn, :create, %{"password" => 123, "name" => "mary"}))
+        |> post(
+          Routes.users_path(conn, :create, %{
+            "password" => 123,
+            "name" => "mary",
+            "cep" => "00000000"
+          })
+        )
         |> json_response(:bad_request)
 
       assert %{
                "errors" => %{
                  "address" => ["can't be blank"],
                  "birth_date" => ["can't be blank"],
-                 "cep" => ["can't be blank"],
                  "email" => ["can't be blank"],
                  "password" => ["should be at least 6 character(s)"],
                  "tax_id" => ["can't be blank"]
