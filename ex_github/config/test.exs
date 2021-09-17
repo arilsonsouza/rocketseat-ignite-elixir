@@ -20,3 +20,5 @@ config :ex_github, ExGithubWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+config :ex_github, ExGithub.Repositories, api_client_adapter: ExGithub.Api.ClientMock
