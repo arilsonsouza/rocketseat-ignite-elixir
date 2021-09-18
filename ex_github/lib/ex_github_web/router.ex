@@ -2,15 +2,25 @@ defmodule ExGithubWeb.Router do
   use ExGithubWeb, :router
 
   pipeline :api do
-    plug :accepts, ["json"]
+    plug(:accepts, ["json"])
+  end
+
+  pipeline :auth do
+    plug(ExGithubWeb.Auth.AccessPipeline)
   end
 
   scope "/api", ExGithubWeb do
-    pipe_through :api
+    pipe_through([:auth, :api])
 
-    get "/:username/repos", RepositoriesController, :get_user_repos
+    get("/:username/repos", RepositoriesController, :get_user_repos)
+  end
 
-    post "/users", AccountsController, :create
+  scope "/api", ExGithubWeb do
+    pipe_through(:api)
+
+    post("/users", AccountsController, :create)
+    post("/users/sign-in", AccountsController, :sign_in)
+    post("/users/refresh-token", AccountsController, :refresh_token)
   end
 
   # Enables LiveDashboard only for development
@@ -24,8 +34,8 @@ defmodule ExGithubWeb.Router do
     import Phoenix.LiveDashboard.Router
 
     scope "/" do
-      pipe_through [:fetch_session, :protect_from_forgery]
-      live_dashboard "/dashboard", metrics: ExGithubWeb.Telemetry
+      pipe_through([:fetch_session, :protect_from_forgery])
+      live_dashboard("/dashboard", metrics: ExGithubWeb.Telemetry)
     end
   end
 end

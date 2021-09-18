@@ -4,9 +4,20 @@ defmodule ExGithubWeb.RepositoriesControllerTest do
   import Mox
   import ExGithub.Factory
 
+  alias ExGithub.Accounts
   alias ExGithub.Api.ClientMock
 
   describe "get_user_repos/1" do
+    setup %{conn: conn} do
+      {:ok, %{token: token}} = Accounts.register_user(build(:user_attrs))
+
+      conn =
+        conn
+        |> put_req_header("authorization", "Bearer #{token}")
+
+      {:ok, conn: conn}
+    end
+
     test "should return user repos when username is valid", %{conn: conn} do
       expect(ClientMock, :get_user_repos, fn _username -> {:ok, build_list(1, :repository)} end)
 

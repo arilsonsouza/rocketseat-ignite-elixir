@@ -2,10 +2,14 @@ defmodule ExGithub.Accounts do
   alias ExGithub.Repo
   alias ExGithub.Error
   alias ExGithub.Accounts.User
+  alias ExGithubWeb.Auth.Guardian
 
   def register_user(attrs) do
-    case User.registration_changeset(%User{}, attrs) |> Repo.insert() do
-      {:ok, %User{}} = result ->
+    with {:ok, %User{} = user} <- User.registration_changeset(%User{}, attrs) |> Repo.insert(),
+         {:ok, %{token: token, refresh_token: refresh_token}} <- Guardian.authenticate(attrs) do
+      {:ok, %{user: user, token: token, refresh_token: refresh_token}}
+    else
+      {:error, %Error{}} = result ->
         result
 
       {:error, result} ->

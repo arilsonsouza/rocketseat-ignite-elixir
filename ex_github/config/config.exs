@@ -32,6 +32,14 @@ config :phoenix, :json_library, Jason
 
 config :ex_github, ExGithub.Repositories, api_client_adapter: ExGithub.Api.Client
 
+config :ex_github, ExGithubWeb.Auth.Guardian,
+  issuer: "rockelivery",
+  secret_key: "RDcuY9rH/GCKyz6dkUv331JADcBOkxZioYJLJNUev1+nds1GcYZo+STKRXK3Tbs6"
+
+config :ex_github, ExGithubWeb.Auth.AccessPipeline,
+  module: ExGithubWeb.Auth.Guardian,
+  error_handler: ExGithubWeb.Auth.ErrorHandler
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
