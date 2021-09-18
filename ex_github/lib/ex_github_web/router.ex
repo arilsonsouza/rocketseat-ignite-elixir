@@ -9,6 +9,8 @@ defmodule ExGithubWeb.Router do
     pipe_through :api
 
     get "/:username/repos", RepositoriesController, :get_user_repos
+
+    post "/users", AccountsController, :create
   end
 
   # Enables LiveDashboard only for development
