@@ -10,6 +10,10 @@ use Mix.Config
 config :ex_github,
   ecto_repos: [ExGithub.Repo]
 
+config :ex_github, ExGithub.Repo,
+  migration_primary_key: [type: :binary_id],
+  migration_foreign_key: [type: :binary_id]
+
 # Configures the endpoint
 config :ex_github, ExGithubWeb.Endpoint,
   url: [host: "localhost"],
