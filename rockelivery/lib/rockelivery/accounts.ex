@@ -47,7 +47,14 @@ defmodule Rockelivery.Accounts do
     end
   end
 
-  def via_cep_adapter() do
+  def user_by_email(email) do
+    case Repo.get_by(User, email: email) do
+      %User{} = user -> {:ok, user}
+      nil -> {:error, Error.user_not_found()}
+    end
+  end
+
+  defp via_cep_adapter() do
     :rockelivery
     |> Application.fetch_env!(__MODULE__)
     |> Keyword.get(:via_cep_adapter)

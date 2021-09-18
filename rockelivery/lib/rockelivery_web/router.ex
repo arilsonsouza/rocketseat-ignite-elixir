@@ -12,7 +12,10 @@ defmodule RockeliveryWeb.Router do
     pipe_through :api
 
     get "/", PagesController, :index
+
     resources "/users", UsersController, except: [:new, :edit]
+    post "/users/sign-in", UsersController, :sign_in
+
     resources "/items", ItemsController, except: [:new, :edit]
 
     post "/orders", OrdersController, :create
