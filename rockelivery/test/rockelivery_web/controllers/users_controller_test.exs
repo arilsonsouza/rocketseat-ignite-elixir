@@ -4,6 +4,7 @@ defmodule RockeliveryWeb.UsersControllerTest do
   import Mox
   import Rockelivery.Factory
 
+  alias RockeliveryWeb.Auth.Guardian
   alias Rockelivery.ViaCep.ClientMock
 
   setup %{} do
@@ -66,13 +67,21 @@ defmodule RockeliveryWeb.UsersControllerTest do
   end
 
   describe "delete/2" do
-    test "should delete a user when user_id is valid", %{conn: conn} do
-      id = "6ab76803-e57b-4147-8598-3b82cf088350"
-      insert(:user)
+    setup %{conn: conn} do
+      user = insert(:user, %{id: "6ab76803-e57b-4147-8598-3b82cf088350"})
+      {:ok, token, _claims} = Guardian.encode_and_sign(user)
 
+      conn =
+        conn
+        |> put_req_header("authorization", "Bearer #{token}")
+
+      {:ok, conn: conn, user: user}
+    end
+
+    test "should delete a user when user_id is valid", %{conn: conn, user: user} do
       response =
         conn
-        |> delete(Routes.users_path(conn, :delete, id))
+        |> delete(Routes.users_path(conn, :delete, user.id))
         |> response(:no_content)
 
       assert response == ""
