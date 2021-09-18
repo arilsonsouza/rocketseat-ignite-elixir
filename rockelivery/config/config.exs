@@ -31,6 +31,11 @@ config :logger, :console,
 config :phoenix, :json_library, Jason
 
 config :rockelivery, Rockelivery.Accounts, via_cep_adapter: Rockelivery.ViaCep.Client
+
+config :rockelivery, RockeliveryWeb.Auth.Guardian,
+  issuer: "rockelivery",
+  secret_key: "RDcuY9rH/GCKyz6dkUv331JADcBOkxZioYJLJNUev1+nds1GcYZo+STKRXK3Tbs6"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
